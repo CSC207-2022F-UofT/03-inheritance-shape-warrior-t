@@ -5,80 +5,76 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.util.ArrayList;
+
 public abstract class Bag {
-    /*
-     * TODO: Create the following private instance variables
-     *       - a String named color
-     *       - an int named numberOfContents
-     *       - an int named capacity
-     *       - an array of Strings named contents
-     */
 
-
-
-
-    /*
-     * TODO: Create a constructor that takes two arguments:
-     *       - a String representing the Bag's colour
-     *       - an int representing the Bag's capacity
-     *
-     * The other attributes (private instance variables) should
-     * be empty (e.g. numberOfContents is 0 and an empty String array for
-     * its contents.)
-     */
-
-
-
-
-    /*
-     * TODO: Create a variety of 'getter' functions.
-     *       These should be named:
-     *           - getColor
-     *           - getNumberOfContents
-     *           - getCapacity
-     */
-
-
-
-
-    /*
-     * TODO: Create a setter function called setColor which sets the
-     *       color of this bag to the given color.
-     */
-
-
-
-
-
-    /*
-     * TODO: Create a method called addItem that takes in a String
-     *       representing an item in the Bag.
-     *       The item is added into the Bag if the number of items
-     *       in the bag is < the capacity of the Bag.
-     *       Remember to modify numberOfContents accordingly.
-     *
-     *       This method should return true if the item was added
-     *       and false otherwise.
-     */
-
-
-
-
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private ArrayList<String> contents = new ArrayList<>();
 
     /**
-     * TODO: Create a method called popItem that returns a String.
-     *       The string should be the last item added to this Bag
-     *       and the item should be removed from this Bag.
-     *       Remember to modify numberOfContents accordingly.
+     * Create a new Bag with the given color and
+     * capacity.
      *
+     * @param color    the given color
+     * @param capacity the given capacity
+     */
+    public Bag(String color, int capacity) {
+        this.color = color;
+        this.capacity = capacity;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public int getNumberOfContents() {
+        return numberOfContents;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    /**
+     * Add an item to this Bag unless it has reached full capacity.
+     *
+     * @param item the item to be added
+     * @return whether the item has been added successfully
+     */
+    public boolean addItem(String item) {
+        if (numberOfContents < capacity) {
+            contents.add(item);
+            numberOfContents++;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Remove and return the last item added to this Bag.
      * If there are no items in this Bag, return null.
      *
-     * @return
+     * @return the item removed, or null if this Bag is empty
      */
-
-
-
-
+    public String popItem() {
+        if (numberOfContents > 0) {
+            int lastIndex = numberOfContents - 1;
+            String item = contents.get(lastIndex);
+            contents.remove(lastIndex);
+            numberOfContents--;
+            return item;
+        } else {
+            return null;
+        }
+    }
 
     /**
      * Increase this bag's capacity by n.
@@ -86,8 +82,7 @@ public abstract class Bag {
      * @param n the amount to increase this Bag's capacity by
      */
     public void increaseCapacity(int n) {
-        // TODO: Implement this method.
-
+        capacity += n;
     }
 
     /**
@@ -95,7 +90,7 @@ public abstract class Bag {
      * This method requires you to have created the private
      * instance variables mentioned above.
      *
-     * @return
+     * @return a string reporting the color, number of contents, and capacity of this Bag
      */
     @Override
     public String toString() {
@@ -114,4 +109,5 @@ public abstract class Bag {
      * We recommend you look at HandBag.java first.
      */
     public abstract void enhance();
+
 }
