@@ -8,13 +8,6 @@
  */
 public class HandBag extends Bag {
 
-    /**
-     * Create a new HandBag with the given color and
-     * capacity.
-     *
-     * @param color    the given color
-     * @param capacity the given capacity
-     */
     public HandBag(String color, int capacity) {
         /**
          * This is how we call the parent's constructor

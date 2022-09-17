@@ -14,13 +14,6 @@ public abstract class Bag {
     private int capacity;
     private ArrayList<String> contents = new ArrayList<>();
 
-    /**
-     * Create a new Bag with the given color and
-     * capacity.
-     *
-     * @param color    the given color
-     * @param capacity the given capacity
-     */
     public Bag(String color, int capacity) {
         this.color = color;
         this.capacity = capacity;
@@ -44,9 +37,11 @@ public abstract class Bag {
 
     /**
      * Add an item to this Bag unless it has reached full capacity.
+     * If this bag has reached full capacity, do nothing.
      *
      * @param item the item to be added
-     * @return whether the item has been added successfully
+     * @return whether the item was added successfully
+     * (in other words, whether this Bag had space for the item)
      */
     public boolean addItem(String item) {
         if (numberOfContents < capacity) {
@@ -87,8 +82,6 @@ public abstract class Bag {
 
     /**
      * Return the details of this Bag.
-     * This method requires you to have created the private
-     * instance variables mentioned above.
      *
      * @return a string reporting the color, number of contents, and capacity of this Bag
      */
